@@ -1,4 +1,4 @@
-const assert = require('assert');
+const { assert }= require('chai');
 const Product = require('../src/entity/Product');
 
 describe('Product', () => {
