@@ -5,3 +5,7 @@ describe('Entity test', () => {
 describe('Services tests', () => {
     require('./test/pricingRules');
 });
+
+describe('Car insurance tests', () => {
+    require('./test/carInsurance');
+});
