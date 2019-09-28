@@ -1,4 +1,14 @@
+const Product = require('../entity/Product');
+
+/**
+ * Pricing rules manager
+ */
 class PricingRules {
+    /**
+     * Create an instance of Pricing rule set
+     *
+     * @param {Object} config
+     */
     constructor(config) {
         if (!Array.isArray(config.pricingRules)) {
             throw Error("Rules must be an Array");
@@ -9,6 +19,12 @@ class PricingRules {
         this.priceLimit = null;
     }
 
+    /**
+     * Resolve the rules to be used for the product
+     *
+     * @param {string} name
+     * @returns {Array}
+     */
     getRuleSet(name) {
         this.priceLimit = null;
         let rules = this.rules;
@@ -20,6 +36,12 @@ class PricingRules {
         return rules;
     }
 
+    /**
+     * Resolve the price factor to apply for the product
+     *
+     * @param {Product} product
+     * @returns {number}
+     */
     getPriceFactor(product) {
         let factor = 0;
 
@@ -40,12 +62,24 @@ class PricingRules {
         return factor;
     }
 
+    /**
+     * Resolve the price limit for the product
+     *
+     * @param {Product} product
+     * @returns {null|number}
+     */
     getPriceLimit(product) {
         this.getPriceFactor(product);
 
         return this.priceLimit;
     }
 
+    /**
+     * Update the price for the product based on rules
+     *
+     * @param {Product} product
+     * @returns {number}
+     */
     getUpdatedPrice(product) {
         let newPrice = product.price + this.getPriceFactor(product);
 

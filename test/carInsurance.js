@@ -1,4 +1,4 @@
-const { assert } = require('chai');
+const { assert, expect } = require('chai');
 const _ = require('lodash');
 
 const Product = require('../src/entity/Product');
@@ -10,7 +10,7 @@ const rules = require('./sample/rules');
 
 describe('CarInsurance', () => {
     const originalProducts = _.cloneDeep(Products.SampleProducts);
-    const carInsurance = new CarInsurance(Products.SampleProducts, new PricingRules(rules), new SellInRules(rules));
+    const carInsurance = new CarInsurance(Products.SampleProducts);
 
     describe('#constructor()', () => {
         it('Car insurance must have at least one product', () => {
@@ -21,7 +21,17 @@ describe('CarInsurance', () => {
     describe('#updatePrice()', () => {
         let updatedProducts = [];
 
+        it('Not set pricingRules should be return an error', () => {
+            expect(() => {
+                carInsurance.updatePrice();
+            }).to.throw(Error, 'Missing rule sets to work');
+        });
+
         it('The update price should be return an array of products', () => {
+            carInsurance
+                .setPricingRules(new PricingRules(rules))
+                .setSellInRules(new SellInRules(rules));
+
             updatedProducts = carInsurance.updatePrice();
 
             assert.isArray(updatedProducts);

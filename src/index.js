@@ -5,7 +5,11 @@ const PricingRules = require('./service/PricingRules');
 const SellInRules = require('./service/SelInRules');
 const rules = require('../config/rules');
 
-const carInsurance = new CarInsurance(Products.SampleProducts, new PricingRules(rules), new SellInRules(rules));
+const carInsurance = new CarInsurance(Products.SampleProducts);
+
+carInsurance
+    .setPricingRules(new PricingRules(rules))
+    .setSellInRules(new SellInRules(rules));
 
 const productPrinter = function (product) {
     console.log(`${product.name}, ${product.sellIn}, ${product.price}`);
