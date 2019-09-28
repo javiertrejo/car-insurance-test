@@ -61,5 +61,15 @@
                 }
             ]
         }
+    },
+    "sellInRules": {
+        "sellInFactor": -1
+    },
+    "specialProductsSellInRules": {
+        "Mega Coverage": {
+            "sellInRules": {
+                "sellInFactor": 0
+            }
+        }
     }
 }
