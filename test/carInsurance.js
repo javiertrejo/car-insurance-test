@@ -4,12 +4,13 @@ const _ = require('lodash');
 const Product = require('../src/entity/Product');
 const CarInsurance = require('../src/service/CarInsurance');
 const PricingRules = require('../src/service/PricingRules');
+const SellInRules = require('../src/service/SelInRules');
 const Products = require('./sample/SampleProducts');
 const rules = require('../config/rules');
 
 describe('CarInsurance', () => {
     const originalProducts = _.cloneDeep(Products.SampleProducts);
-    const carInsurance = new CarInsurance(Products.SampleProducts, new PricingRules(rules));
+    const carInsurance = new CarInsurance(Products.SampleProducts, new PricingRules(rules), new SellInRules(rules));
 
     describe('#constructor()', () => {
         it('Car insurance must have at least one product', () => {
