@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn
+RUN yarn --prod
 
 CMD [ "yarn", "after-30-days" ]
