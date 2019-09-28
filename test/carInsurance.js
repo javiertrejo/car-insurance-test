@@ -6,7 +6,7 @@ const CarInsurance = require('../src/service/CarInsurance');
 const PricingRules = require('../src/service/PricingRules');
 const SellInRules = require('../src/service/SelInRules');
 const Products = require('./sample/SampleProducts');
-const rules = require('../config/rules');
+const rules = require('./sample/rules');
 
 describe('CarInsurance', () => {
     const originalProducts = _.cloneDeep(Products.SampleProducts);

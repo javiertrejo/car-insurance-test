@@ -1,5 +1,5 @@
 const { assert, expect } = require('chai');
-const rules = require('../config/rules');
+const rules = require('./sample/rules');
 const Product = require('../src/entity/Product');
 const PricingRules = require('../src/service/PricingRules');
 
@@ -42,10 +42,10 @@ describe('Pricing rules', () => {
     describe('#getPriceLimit()', function () {
         const pricingRules = new PricingRules(rules);
 
-        it('The price for generic rules shoud be 50', () => {
+        it('The price for generic rules shoud be at most 50', () => {
             const limit = pricingRules.getPriceLimit(new Product("Any product", -1, 10));
 
-            assert.equal(limit, 50);
+            assert.isAtMost(limit, 50);
         });
 
         it('Product without rules no have price limit', () => {

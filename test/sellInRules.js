@@ -1,5 +1,5 @@
 const { assert, expect } = require('chai');
-const rules = require('../config/rules');
+const rules = require('./sample/rules');
 const Product = require('../src/entity/Product');
 const SellInRules = require('../src/service/SelInRules');
 
