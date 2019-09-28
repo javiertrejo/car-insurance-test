@@ -34,10 +34,6 @@ class PricingRules {
                     if('priceLimit' in rule) {
                         this.priceLimit = rule.priceLimit;
                     }
-
-                    if('stopSell' in rule) {
-                        this.priceLimit = 0;
-                    }
                 }
             });
 
