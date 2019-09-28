@@ -10,7 +10,11 @@ const rules = require('./sample/rules');
 
 describe('CarInsurance', () => {
     const originalProducts = _.cloneDeep(Products.SampleProducts);
-    const carInsurance = new CarInsurance(Products.SampleProducts, new PricingRules(rules), new SellInRules(rules));
+    const carInsurance = new CarInsurance(Products.SampleProducts);
+
+    carInsurance
+        .setPricingRules(new PricingRules(rules))
+        .setSellInRules(new SellInRules(rules));
 
     describe('#constructor()', () => {
         it('Car insurance must have at least one product', () => {

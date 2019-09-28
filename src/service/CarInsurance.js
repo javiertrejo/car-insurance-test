@@ -1,8 +1,18 @@
 class CarInsurance {
-    constructor(products, pricingRules, sellInRules) {
+    constructor(products) {
         this.products = products;
-        this.pricingRules = pricingRules;
-        this.sellInRules = sellInRules;
+    }
+
+    setPricingRules(rules) {
+        this.pricingRules = rules;
+
+        return this;
+    }
+
+    setSellInRules(rules) {
+        this.sellInRules = rules;
+
+        return this;
     }
 
     updatePrice() {
