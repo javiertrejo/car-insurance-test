@@ -1,24 +1,59 @@
 class PricingRules {
-    constructor(rules) {
-        if(!Array.isArray(rules)) {
+    constructor(config) {
+        if (!Array.isArray(config.pricingRules)) {
             throw Error("Rules must be an Array");
         }
 
-        this.rules = rules;
+        this.rules = config.pricingRules;
+        this.config = config;
+        this.priceLimit = null;
     }
 
-    getPriceFactor(sellIn) {
+    getRuleSet(name) {
+        this.priceLimit = null;
+        let rules = this.rules;
+
+        if(name in this.config.specialProductsPricingRules) {
+            rules = this.config.specialProductsPricingRules[name].pricingRules;
+        }
+
+        return rules;
+    }
+
+    getPriceFactor(product) {
         let factor = 0;
 
-        this.rules.map((rule) => {
-            const str = sellIn + rule.condition + rule.sellInBase;
+        this
+            .getRuleSet(product.name)
+            .map((rule) => {
+                const str = product.sellIn + rule.condition + rule.sellInBase;
 
-            if(eval(str)) {
-                factor = rule.priceFactor;
-            }
-        });
+                if(eval(str)) {
+                    factor = rule.priceFactor;
+
+                    if('priceLimit' in rule) {
+                        this.priceLimit = rule.priceLimit;
+                    }
+                }
+            });
 
         return factor;
+    }
+
+    getPriceLimit(product) {
+        this.getPriceFactor(product);
+
+        return this.priceLimit;
+    }
+
+    getUpdatedPrice(product) {
+        let newPrice = product.price + this.getPriceFactor(product);
+
+        if(this.priceLimit && newPrice > this.priceLimit) {
+            newPrice = this.priceLimit;
+        }
+
+        return newPrice;
     }
 }
 
