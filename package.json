@@ -1,0 +1,11 @@
+{
+  "name": "car-insurance-test",
+  "version": "1.0.0",
+  "description": "ComparaOnline Test",
+  "main": "index.js",
+  "author": "Javier Trejo <trejo.javier@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "after-30-days": "node index.js"
+  }
+}
