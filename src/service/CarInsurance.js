@@ -1,11 +1,25 @@
 class CarInsurance {
-    constructor(products, pricingRules, sellInRules) {
+    constructor(products) {
         this.products = products;
-        this.pricingRules = pricingRules;
-        this.sellInRules = sellInRules;
+    }
+
+    setPricingRules(rules) {
+        this.pricingRules = rules;
+
+        return this;
+    }
+
+    setSellInRules(rules) {
+        this.sellInRules = rules;
+
+        return this;
     }
 
     updatePrice() {
+        if(this.pricingRules === undefined || this.sellInRules === undefined) {
+            throw Error('Missing rule sets to work');
+        }
+
         this.products.map((product) => {
             product.price = this.pricingRules.getUpdatedPrice(product);
             product.sellIn += this.sellInRules.getFactor(product);
