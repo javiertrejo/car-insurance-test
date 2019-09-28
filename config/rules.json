@@ -1,0 +1,14 @@
+{
+    "pricingRules": [
+        {
+            "condition": ">=",
+            "sellInBase": 1,
+            "priceFactor": 1
+        },
+        {
+            "condition": "<=",
+            "sellInBase": 0,
+            "priceFactor": 2
+        }
+    ]
+}
