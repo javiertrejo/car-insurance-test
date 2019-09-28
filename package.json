@@ -6,6 +6,10 @@
   "author": "Javier Trejo <trejo.javier@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "after-30-days": "node index.js"
+    "after-30-days": "node index.js",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0"
   }
 }
