@@ -16,6 +16,10 @@ class CarInsurance {
     }
 
     updatePrice() {
+        if(this.pricingRules === undefined || this.sellInRules === undefined) {
+            throw Error('Missing rule sets to work');
+        }
+
         this.products.map((product) => {
             product.price = this.pricingRules.getUpdatedPrice(product);
             product.sellIn += this.sellInRules.getFactor(product);
