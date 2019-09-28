@@ -36,7 +36,7 @@
         "Special Full Coverage": {
             "pricingRules": [
                 {
-                    "condition": ">=",
+                    "condition": ">",
                     "sellInBase": 0,
                     "priceFactor": 1,
                     "priceLimit": 50
@@ -52,6 +52,12 @@
                     "sellInBase": 5,
                     "priceFactor": 3,
                     "priceLimit": 50
+                },
+                {
+                    "condition": "<=",
+                    "sellInBase": 0,
+                    "priceFactor": 0,
+                    "priceLimit": 0
                 }
             ]
         }

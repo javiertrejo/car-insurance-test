@@ -34,6 +34,10 @@ class PricingRules {
                     if('priceLimit' in rule) {
                         this.priceLimit = rule.priceLimit;
                     }
+
+                    if('stopSell' in rule) {
+                        this.priceLimit = 0;
+                    }
                 }
             });
 
@@ -49,11 +53,11 @@ class PricingRules {
     getUpdatedPrice(product) {
         let newPrice = product.price + this.getPriceFactor(product);
 
-        if(this.priceLimit && newPrice > this.priceLimit) {
+        if(this.priceLimit !== null && newPrice > this.priceLimit) {
             newPrice = this.priceLimit;
         }
 
-        return newPrice;
+        return newPrice >= 0 ? newPrice : 0;
     }
 }
 

@@ -54,4 +54,20 @@ describe('Pricing rules', () => {
             assert.equal(limit, null);
         });
     });
+
+    describe('#getUpdatedPrice()', () => {
+        const pricingRules = new PricingRules(rules);
+
+        it('Products with stopSell true, price should be zero when no day left', () => {
+            const price = pricingRules.getUpdatedPrice(new Product("Special Full Coverage", 0, 10));
+
+            assert.equal(price, 0);
+        });
+
+        it('The price should be greater or equal to zero', () => {
+            const price = pricingRules.getUpdatedPrice(new Product("Any product", -1, 0));
+
+            assert.isAtLeast(price, 0);
+        });
+    });
 });
