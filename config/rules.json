@@ -40,6 +40,18 @@
                     "sellInBase": 0,
                     "priceFactor": 1,
                     "priceLimit": 50
+                },
+                {
+                    "condition": "<=",
+                    "sellInBase": 10,
+                    "priceFactor": 2,
+                    "priceLimit": 50
+                },
+                {
+                    "condition": "<=",
+                    "sellInBase": 5,
+                    "priceFactor": 3,
+                    "priceLimit": 50
                 }
             ]
         }
